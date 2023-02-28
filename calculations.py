@@ -4,12 +4,12 @@ from types import FunctionType
 
 class Calculations:
     def __init__(self):
-        self.__value = 0
+        self.__value = 0.0
         self.__operation_history = []
         self.__operation_chars = {"divide": "/",
-                                "substract": "-",
-                                "plus": "+",
-                                "multiply": "*"}
+                                  "substract": "-",
+                                  "plus": "+",
+                                  "multiply": "*"}
 
         self.operations = list(self.__operation_chars.values())
         self.digits = [i for i in range(10)]
@@ -75,4 +75,11 @@ class Calculations:
         self.__value += value
         self.__add_to_history("plus", value)
         return self.value
+
+    def raw(self, operator: str, value: Union[int, str]):
+        if operator not in self.operations:
+            return self.value
+        func_name = self.get_func_name_by_operator(operator)
+        return getattr(self, func_name)(float(value))
+
 

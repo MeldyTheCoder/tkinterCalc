@@ -1,7 +1,8 @@
-from calculations import Calculations
+from activities import MainActivity
 
 
-calc = Calculations()
-calc.set_value(80)
-ans = calc.plus(80)
-print(ans)
+
+main = MainActivity()
+
+if __name__ == "__main__":
+    main.mainloop()
